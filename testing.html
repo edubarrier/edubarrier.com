@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EduBarrier Testing Feedback Form - Help us improve by sharing your experience.">
+    <title>Testing Feedback - EduBarrier</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles specific to testing form */
+        .testing-form-page {
+            background: var(--gradient-bg);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+        
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 3px solid var(--color-teal);
+        }
+        
+        .form-header h1 {
+            color: var(--color-teal);
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .form-header .subtitle {
+            color: var(--color-text-medium);
+            font-size: 1.125rem;
+        }
+        
+        .form-section {
+            margin: var(--spacing-xl) 0;
+            padding: var(--spacing-lg);
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border-radius: var(--radius-lg);
+            border-left: 5px solid var(--color-teal);
+        }
+        
+        .form-section h2 {
+            color: var(--color-teal);
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .form-question {
+            margin: var(--spacing-md) 0;
+            padding: var(--spacing-md);
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .form-question label {
+            display: block;
+            font-weight: 600;
+            color: var(--color-text-dark);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .required {
+            color: #EF4444;
+        }
+        
+        .form-question input[type="text"],
+        .form-question input[type="email"],
+        .form-question textarea,
+        .form-question select {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-md);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-question input:focus,
+        .form-question textarea:focus,
+        .form-question select:focus {
+            outline: none;
+            border-color: var(--color-teal);
+        }
+        
+        .form-question textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .radio-group,
+        .checkbox-group {
+            margin: var(--spacing-sm) 0;
+        }
+        
+        .radio-group label,
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+            margin: var(--spacing-xs) 0;
+            cursor: pointer;
+        }
+        
+        .radio-group input[type="radio"],
+        .checkbox-group input[type="checkbox"] {
+            margin-right: var(--spacing-sm);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .rating-scale {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin: var(--spacing-sm) 0;
+            flex-wrap: wrap;
+        }
+        
+        .rating-scale label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: var(--spacing-sm);
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+            flex: 0 0 auto;
+        }
+        
+        .rating-scale input[type="radio"] {
+            display: none;
+        }
+        
+        .rating-scale input[type="radio"]:checked + span {
+            background: var(--gradient-primary);
+            color: var(--color-white);
+        }
+        
+        .rating-scale span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.25rem;
+            background: var(--color-gray-100);
+            transition: all 0.3s ease;
+        }
+        
+        .rating-scale label:hover span {
+            background: var(--color-teal);
+            color: var(--color-white);
+            transform: scale(1.1);
+        }
+        
+        .info-box {
+            background: rgba(37, 99, 235, 0.1);
+            border-left: 4px solid #2563EB;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin: var(--spacing-md) 0;
+        }
+        
+        .info-box p {
+            color: #1E40AF;
+            margin: 0.25rem 0;
+        }
+        
+        .submit-section {
+            margin-top: var(--spacing-xl);
+            text-align: center;
+        }
+        
+        small {
+            color: var(--color-text-light);
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 768px) {
+            .form-container {
+                padding: var(--spacing-lg);
+            }
+            
+            .form-header h1 {
+                font-size: 2rem;
+            }
+            
+            .rating-scale {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <img src="edubarrier-logo.png" alt="EduBarrier Logo" class="logo-image">
+                    <span class="logo-text">EduBarrier</span>
+                </a>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="investors.html">Investors</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.html" class="btn-primary-nav">Schedule Demo</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Testing Form -->
+    <div class="testing-form-page">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h1>🧪 Testing Feedback Form</h1>
+                    <p class="subtitle">Help us improve EduBarrier by sharing your testing experience</p>
+                </div>
+
+                <!-- IMPORTANT: Replace YOUR_FORM_ID with your actual Formspree form ID -->
+                <form id="testingForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    
+                    <!-- TESTER INFORMATION -->
+                    <div class="form-section">
+                        <h2>👤 Tester Information</h2>
+                        
+                        <div class="info-box">
+                            <p><strong>Thank you for testing EduBarrier!</strong></p>
+                            <p>Your feedback is invaluable in helping us create the best possible product for families and educators.</p>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label for="name">Your Name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label for="role">Your Role <span class="required">*</span></label>
+                            <select id="role" name="role" required>
+                                <option value="">Select your role</option>
+                                <option value="parent">Parent</option>
+                                <option value="educator">Educator/Teacher</option>
+                                <option value="admin">School Administrator</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label for="testDate">When did you test EduBarrier?</label>
+                            <input type="text" id="testDate" name="testDate" placeholder="e.g., November 2025">
+                        </div>
+                    </div>
+
+                    <!-- SETUP & FIRST IMPRESSIONS -->
+                    <div class="form-section">
+                        <h2>🚀 Setup & First Impressions</h2>
+                        
+                        <div class="form-question">
+                            <label>How easy was it to set up your account? <span class="required">*</span></label>
+                            <div class="rating-scale">
+                                <label>
+                                    <input type="radio" name="setupEase" value="1" required>
+                                    <span>1</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="setupEase" value="2" required>
+                                    <span>2</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="setupEase" value="3" required>
+                                    <span>3</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="setupEase" value="4" required>
+                                    <span>4</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="setupEase" value="5" required>
+                                    <span>5</span>
+                                </label>
+                            </div>
+                            <small>1 = Very Difficult, 5 = Very Easy</small>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>Did you encounter any issues during setup?</label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="setupIssues" value="no">
+                                    No, setup was smooth
+                                </label>
+                                <label>
+                                    <input type="radio" name="setupIssues" value="minor">
+                                    Minor issues (resolved quickly)
+                                </label>
+                                <label>
+                                    <input type="radio" name="setupIssues" value="major">
+                                    Major issues (took significant time)
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>What was your first impression of the platform?</label>
+                            <textarea name="firstImpression" placeholder="Share your initial thoughts..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- PARENT ACCOUNT FEATURES -->
+                    <div class="form-section">
+                        <h2>👨‍👩‍👧‍👦 Parent Account Features</h2>
+                        
+                        <div class="form-question">
+                            <label>Did you try adding a child account? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="addedChild" value="yes" required>
+                                    Yes, it was easy
+                                </label>
+                                <label>
+                                    <input type="radio" name="addedChild" value="issues" required>
+                                    Yes, but had difficulties
+                                </label>
+                                <label>
+                                    <input type="radio" name="addedChild" value="no" required>
+                                    No, didn't try this feature
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>Rate the Parent Dashboard usability <span class="required">*</span></label>
+                            <div class="rating-scale">
+                                <label>
+                                    <input type="radio" name="dashboardRating" value="1" required>
+                                    <span>1</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="dashboardRating" value="2" required>
+                                    <span>2</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="dashboardRating" value="3" required>
+                                    <span>3</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="dashboardRating" value="4" required>
+                                    <span>4</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="dashboardRating" value="5" required>
+                                    <span>5</span>
+                                </label>
+                            </div>
+                            <small>1 = Confusing, 5 = Very User-Friendly</small>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>Comments on Parent features (dashboard, settings, monitoring):</label>
+                            <textarea name="parentComments" placeholder="Share your thoughts on the parent experience..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- CHILD ACCOUNT FEATURES -->
+                    <div class="form-section">
+                        <h2>👶 Child Account Features</h2>
+                        
+                        <div class="form-question">
+                            <label>Did you (or a child) try completing a course/lesson? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="completedLesson" value="yes" required>
+                                    Yes, completed successfully
+                                </label>
+                                <label>
+                                    <input type="radio" name="completedLesson" value="partial" required>
+                                    Started but didn't finish
+                                </label>
+                                <label>
+                                    <input type="radio" name="completedLesson" value="no" required>
+                                    No, didn't try this
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>Rate the educational content quality</label>
+                            <div class="rating-scale">
+                                <label>
+                                    <input type="radio" name="contentQuality" value="1">
+                                    <span>1</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="contentQuality" value="2">
+                                    <span>2</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="contentQuality" value="3">
+                                    <span>3</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="contentQuality" value="4">
+                                    <span>4</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="contentQuality" value="5">
+                                    <span>5</span>
+                                </label>
+                            </div>
+                            <small>1 = Poor Quality, 5 = Excellent Quality</small>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>Did you try the timer/screen time earning features?</label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="timerControls" value="yes">
+                                    Yes, they worked well
+                                </label>
+                                <label>
+                                    <input type="radio" name="timerControls" value="issues">
+                                    Yes, but had issues
+                                </label>
+                                <label>
+                                    <input type="radio" name="timerControls" value="no">
+                                    No, didn't try this
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>Comments on Child features (ease of use, course quality, any confusion):</label>
+                            <textarea name="childComments" placeholder="Share your thoughts on the child experience..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- ADMIN ACCOUNT FEATURES (Optional) -->
+                    <div class="form-section">
+                        <h2>👑 Admin Account Features (Optional)</h2>
+                        
+                        <div class="form-question">
+                            <label>If you tested the Admin account, did you try creating a new course?</label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="adminCourse" value="yes">
+                                    Yes, it worked well
+                                </label>
+                                <label>
+                                    <input type="radio" name="adminCourse" value="issues">
+                                    Yes, but encountered issues
+                                </label>
+                                <label>
+                                    <input type="radio" name="adminCourse" value="no">
+                                    No, didn't try or test Admin
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>Admin account comments (if you tested it):</label>
+                            <textarea name="adminComments" placeholder="Share your thoughts on admin features..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- USER GUIDE FEEDBACK -->
+                    <div class="form-section">
+                        <h2>📖 User Guide Feedback</h2>
+                        
+                        <div class="form-question">
+                            <label>Did you use the EduBarrier User Guide? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="usedGuide" value="yes" required>
+                                    Yes, it was very helpful
+                                </label>
+                                <label>
+                                    <input type="radio" name="usedGuide" value="somewhat" required>
+                                    Yes, but it was confusing in places
+                                </label>
+                                <label>
+                                    <input type="radio" name="usedGuide" value="no" required>
+                                    No, I figured it out without the guide
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>Rate the User Guide quality <span class="required">*</span></label>
+                            <div class="rating-scale">
+                                <label>
+                                    <input type="radio" name="guideRating" value="1" required>
+                                    <span>1</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="guideRating" value="2" required>
+                                    <span>2</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="guideRating" value="3" required>
+                                    <span>3</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="guideRating" value="4" required>
+                                    <span>4</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="guideRating" value="5" required>
+                                    <span>5</span>
+                                </label>
+                            </div>
+                            <small>1 = Not helpful, 5 = Excellent</small>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>What could be improved in the User Guide?</label>
+                            <textarea name="guideImprovements" placeholder="Suggestions for making the guide better..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- OVERALL FEEDBACK -->
+                    <div class="form-section">
+                        <h2>⭐ Overall Feedback</h2>
+                        
+                        <div class="form-question">
+                            <label>Overall, how would you rate EduBarrier? <span class="required">*</span></label>
+                            <div class="rating-scale">
+                                <label>
+                                    <input type="radio" name="overallRating" value="1" required>
+                                    <span>1</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="overallRating" value="2" required>
+                                    <span>2</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="overallRating" value="3" required>
+                                    <span>3</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="overallRating" value="4" required>
+                                    <span>4</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="overallRating" value="5" required>
+                                    <span>5</span>
+                                </label>
+                            </div>
+                            <small>1 = Poor, 5 = Excellent</small>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>Would you use this with your own family/students? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label>
+                                    <input type="radio" name="wouldUse" value="definitely" required>
+                                    Definitely, I'd sign up right away
+                                </label>
+                                <label>
+                                    <input type="radio" name="wouldUse" value="probably" required>
+                                    Probably, with some improvements
+                                </label>
+                                <label>
+                                    <input type="radio" name="wouldUse" value="unsure" required>
+                                    Unsure / Need to see more
+                                </label>
+                                <label>
+                                    <input type="radio" name="wouldUse" value="no" required>
+                                    No, it's not for me
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>What features or improvements would make EduBarrier more valuable to you?</label>
+                            <textarea name="featureRequests" placeholder="Share your ideas for new features or improvements..."></textarea>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>Any bugs or technical issues you encountered?</label>
+                            <textarea name="bugs" placeholder="Describe any problems, errors, or things that didn't work..."></textarea>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>What did you like MOST about EduBarrier?</label>
+                            <textarea name="positives" placeholder="What worked really well?"></textarea>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>What needs the MOST improvement?</label>
+                            <textarea name="improvements" placeholder="What should we focus on fixing or improving?"></textarea>
+                        </div>
+                        
+                        <div class="form-question">
+                            <label>Any other comments, suggestions, or feedback?</label>
+                            <textarea name="additionalComments" placeholder="Anything else you'd like to share..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- SUBMIT BUTTON -->
+                    <div class="submit-section">
+                        <button type="submit" class="btn btn-primary btn-primary-large">📤 Submit Feedback</button>
+                        <p style="margin-top: 1rem; color: var(--color-text-medium);">Thank you for helping us improve EduBarrier!</p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-text">EduBarrier</div>
+                    <p>Transforming screen time into learning time</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="investors.html">Investors</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="mailto:info@edubarrier.com">info@edubarrier.com</a></li>
+                            <li><a href="mailto:investors@edubarrier.com">investors@edubarrier.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EduBarrier. All rights reserved. Patent Pending.</p>
+                <p class="footer-small">"EduBarrier" and associated logos are trademarks. Technology and methodologies protected by pending patent applications.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
