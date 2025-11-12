@@ -1,4 +1,4 @@
-// EduBarrier Website JavaScript
+//  EduBarrier Website JavaScript
 
 // Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
